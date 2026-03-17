@@ -44,6 +44,11 @@ barcode-kanojo-server/static/
 *.swo
 *~
 
+# Claude
+CLAUDE.md
+PLAN.md
+.claude/
+
 # Misc
 *.log
 Thumbs.db
