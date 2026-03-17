@@ -45,7 +45,7 @@ barcode-kanojo-server/static/
 *.swo
 *~
 
-# Claude
+# Local project docs
 CLAUDE.md
 PLAN.md
 .claude/
