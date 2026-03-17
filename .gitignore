@@ -49,6 +49,11 @@ CLAUDE.md
 PLAN.md
 .claude/
 
+# Reference source (not part of this project)
+_extracted/
+kanojo_app-master/
+kanojo_app-master.zip
+
 # Misc
 *.log
 Thumbs.db
