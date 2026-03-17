@@ -1,79 +1,80 @@
 # Barcode Kanojo
 
-> **Work in Progress** — An iOS revival of Cybird's Barcode Kanojo.
+> **Work in Progress**
 
-Scan real-world barcodes to generate unique kanojos with distinct personalities, stats, and fully animated Live2D avatars.
+An iOS revival of Cybird's Barcode Kanojo -- a mobile game where scanning real-world barcodes generates unique kanojos with distinct personalities and stats.
 
-![iOS 16+](https://img.shields.io/badge/iOS-16%2B-blue) ![Swift](https://img.shields.io/badge/swift-5.9-orange) ![Status](https://img.shields.io/badge/status-WIP-yellow)
+## Overview
 
----
+This project is a full reimplementation of the original Barcode Kanojo experience:
 
-## Features
-
-- **Barcode Scanning** — Scan any product barcode to generate or discover a kanojo
-- **Live2D Avatars** — Fully animated characters with customizable hair, eyes, clothes, accessories
-- **Touch Interaction** — Tap, double-tap, and shake to interact with your kanojo
-- **Dating & Gifts** — Take your kanojo on dates, give gifts, raise the love gauge
-- **Resource Management** — Stamina, money, and tickets govern what actions you can take
-- **Social** — Visit other players' kanojos, like them, check rankings
-- **Enemy Book** — Track rival players who've interacted with your kanojos
-- **Map View** — Discover nearby kanojos on an interactive map
-
----
+- **Scan barcodes** to generate or discover kanojos tied to real products
+- **Interact** with your kanojo via Live2D touch, dates, and gifts
+- **Build relationships** -- raise love gauges, manage stamina, earn rewards
+- **Social features** -- visit other players' kanojos, like them, check rankings
+- **Live2D avatars** -- fully animated characters with customizable parts (hair, eyes, clothes, accessories)
 
 ## Project Structure
 
 ```
 barcodekanojo/
-├── BarcodeKanojo-iOS/       # SwiftUI iOS client (MVVM)
-├── barcode-kanojo-server/   # Python/FastAPI backend + SQLite
-└── live2d-v2/               # Live2D v2 rendering engine (Swift/Metal)
+  BarcodeKanojo-iOS/     # SwiftUI iOS client
+  barcode-kanojo-server/  # Python/FastAPI backend
+  live2d-v2/              # Live2D rendering engine (Swift/Metal)
 ```
 
----
+### iOS Client
 
-## Tech Stack
+Built with **SwiftUI** targeting iOS 16+. Uses MVVM architecture.
 
-**iOS** — SwiftUI, AVFoundation, Metal, async/await, UserDefaults
+Key features:
+- Barcode scanning via AVFoundation
+- Live2D avatar rendering with Metal
+- Date/gift system with item menus
+- Stamina and money management
+- Tutorial overlay for new players
+- Push notification support
+- Enemy book and map views
 
-**Server** — FastAPI, SQLAlchemy (async), SQLite, Pydantic
+### Server
 
-**Live2D** — Custom Swift/Metal port of Live2D v2 SDK
+**Python/FastAPI** backend with SQLite database.
 
----
+- RESTful API matching the original Cybird endpoints
+- User authentication with SHA-512 password hashing
+- Kanojo generation from barcode data
+- Date, gift, and social interaction endpoints
+- Avatar data serving for Live2D models
 
-## Getting Started
+### Live2D Engine
+
+A **Swift/Metal** port of the Live2D v2 SDK for rendering animated kanojo avatars. Supports:
+- MOC file parsing and model rendering
+- Part-based avatar customization
+- Touch interaction with body regions
+- Idle and reaction animations
+- Device motion-based parallax
+
+## Setup
 
 ### Server
 
 ```bash
 cd barcode-kanojo-server
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
+cp .env.example .env  # edit as needed
 python main.py
 ```
 
-Runs on `http://localhost:8000` by default.
+The server runs on `http://localhost:8000` by default.
 
 ### iOS
 
 1. Open `BarcodeKanojo-iOS/BarcodeKanojo.xcodeproj` in Xcode
-2. Build & Run on a simulator or device (iOS 16+)
-3. Configure the server URL in **Settings**
-
----
-
-## Game Mechanics
-
-| Action | Stamina Cost | Effect |
-|--------|-------------|--------|
-| Touch | 1 | +1 love, triggers animation |
-| Date | 10 + item price | Large love boost, timed state |
-| Gift | 5 + item price | Medium love boost, dialogue |
-| Like | Free | Toggle heart on any kanojo |
-
----
+2. Build and run on a simulator or device (iOS 16+)
+3. On first launch, configure the server URL in Settings to point to your server
 
 ## Credits
 
@@ -81,4 +82,4 @@ Based on the original **Barcode Kanojo** by Cybird. Android reference implementa
 
 ## License
 
-For **educational and preservation purposes**. All original Barcode Kanojo assets and trademarks belong to their respective owners.
+This project is for educational and preservation purposes.
