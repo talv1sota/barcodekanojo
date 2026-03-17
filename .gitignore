@@ -5,6 +5,7 @@
 ._*
 
 # Xcode
+*.pbxproj.backup
 xcuserdata/
 *.xcuserstate
 DerivedData/
